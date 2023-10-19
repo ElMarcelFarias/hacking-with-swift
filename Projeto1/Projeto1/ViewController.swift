@@ -13,6 +13,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
         title = "Storm Viewer"
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -45,6 +47,15 @@ class ViewController: UITableViewController {
             vc.selectedImage = pictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func shareTapped() {
+        
+        let msg: String = "Se você é fascinado por tempestades e deseja capturar a beleza e a grandiosidade da natureza, o aplicativo [Nome do Aplicativo] é um must-have em seu smartphone. Com uma variedade de recursos e filtros especiais para fotos de tempestades, este aplicativo torna mais fácil do que nunca registrar momentos impressionantes. Não perca a oportunidade de capturar a energia das tempestades. Baixe [Nome do Aplicativo] agora e comece a fotografar tempestades como um profissional!"
+
+        let vc = UIActivityViewController(activityItems: [msg], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 
 
